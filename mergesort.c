@@ -53,7 +53,10 @@ int mergesort_int(int **arr, int len){
 		return 1;
 	}
 
-	//TODO: implement recursive calls
+	//Recursive calls
+	temp = len/2;
+	mergesort(arr, temp);
+	mergesort(&((*arr)[temp]), len-temp);
 
 	//TODO: implement merge
 	
