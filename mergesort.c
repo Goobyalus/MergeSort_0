@@ -1,5 +1,5 @@
 /*******************************************************************************
-An implementation of mergesort in C
+An implementation of mergesort in C by Goobyalus
 *******************************************************************************/
 
 #include <stdio.h>
