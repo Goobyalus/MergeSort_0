@@ -19,6 +19,12 @@ int mergesort_int(int **arr, int len);
 
 int main(int argc, char **argv){
 	
+	int a = {90,4,78,2,1,4,5,8,6,1,7};
+	print_int_arr(a, 11);
+
+	mergesort_int(&a, 11);
+	print_int_arr(a, 11);
+	
 	return 0;
 }
 
@@ -74,7 +80,40 @@ int mergesort_int(int **arr, int len){
 		temp++;	
 	}
 
-	//TODO: loop to copy remaining elements from either L or R
+	//Merge cont: copy remaining elements from either L or R
+	if(r < len)
+		l = r;
+	while(temp < len){
+		buffer[temp] = (*arr)[l];
+		temp++;
+	}
+	
+	//Copy from buffer to *arr
+	temp = 0;
+	while(temp < len){
+		(*arr)[temp] = buffer[temp];
+		temp++;
+	}
+	
 
 	return 1;
 }
+
+/*
+ *utility to print array of ints
+ */
+void print_int_arr(int a[], n){
+	int i = 0;
+	while(i++ < n){
+		printf("%i, ",a[i]);
+	}
+	printf("\n");
+
+	return;
+}
+
+
+
+
+
+
