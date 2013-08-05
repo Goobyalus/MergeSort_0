@@ -10,7 +10,7 @@ An implementation of mergesort in C by Goobyalus
  */
 
 int mergesort_int(int **arr, int len);
-
+void print_int_arr(int a[], int n);
 
 
 
@@ -18,11 +18,19 @@ int mergesort_int(int **arr, int len);
 
 
 int main(int argc, char **argv){
-	
-	int a = {90,4,78,2,1,4,5,8,6,1,7};
+
+	int **p = NULL;
+
+	printf("Original array:\n");	
+	int a[] = {90,4,78,2,1,4,5,8,6,1,7};
+	p = &a;
 	print_int_arr(a, 11);
 
-	mergesort_int(&a, 11);
+	printf("%i",a[3]);
+
+	printf("\nAbout to mergesort:\n");
+
+	mergesort_int(p, 11);
 	print_int_arr(a, 11);
 	
 	return 0;
@@ -42,10 +50,12 @@ int mergesort_int(int **arr, int len){
 	int l = 0;
 	int r = len/2;
 
+	
+	printf("Mergesort called with %p, %i\n\n", arr, len);
 
 	//Check for valid length	
 	if(len < 0)
-		return NULL;
+		return 0;
 
 
 	//Base cases
@@ -54,17 +64,19 @@ int mergesort_int(int **arr, int len){
 	case 1:	return 1;
 
 	case 2:	temp = (*arr)[0];
+		printf("case 2 %i\n\n",temp);
 		if( (*arr)[1] < temp){
 			(*arr)[0] = (*arr)[1];
 			(*arr)[1] = temp;
 		}
+		
 		return 1;
 	}
 
 	//Recursive calls
 	temp = len/2;
-	mergesort(arr, temp);
-	mergesort(&((*arr)[temp]), len-temp);
+	mergesort_int(arr, temp);
+	mergesort_int(&((*arr)[temp]), len-temp);
 
 	//Merge
 	temp = 0;	//temp is the index of buffer
@@ -102,10 +114,11 @@ int mergesort_int(int **arr, int len){
 /*
  *utility to print array of ints
  */
-void print_int_arr(int a[], n){
+void print_int_arr(int a[], int n){
 	int i = 0;
-	while(i++ < n){
+	while(i < n){
 		printf("%i, ",a[i]);
+		i++;
 	}
 	printf("\n");
 
