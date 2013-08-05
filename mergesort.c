@@ -24,15 +24,17 @@ int main(int argc, char **argv){
 
 
 /*
- *Sort the first 'len' elements of integer array pointed to by 'arr' in place.
+ *Sort the first 'len' elements of integer array pointed to by 'arr'.
  *
  *'arr' is a pointer to the integer array to sort.
  *'len' is the number of elements to sort, and must be >= 1.
  */
 int mergesort_int(int **arr, int len){
 	
-	//TODO: add required variables here
+	int buffer[len];
 	int temp = 0;
+	int l = 0;
+	int r = len/2;
 
 
 	//Check for valid length	
@@ -58,6 +60,21 @@ int mergesort_int(int **arr, int len){
 	mergesort(arr, temp);
 	mergesort(&((*arr)[temp]), len-temp);
 
-	//TODO: implement merge
-	
+	//Merge
+	temp = 0;	//temp is the index of buffer
+	while(l < len/2 && r < len){
+		if((*arr)[l] <= (*arr)[r]){
+			buffer[temp] = (*arr)[l];
+			l++;
+		} else {
+			buffer[temp] = (*arr)[r];
+			r++;
+		}
+			
+		temp++;	
+	}
+
+	//TODO: loop to copy remaining elements from either L or R
+
+	return 1;
 }
