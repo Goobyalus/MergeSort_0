@@ -9,7 +9,7 @@ An implementation of mergesort in C by Goobyalus
  *Header declarations
  */
 
-int mergesort_int(int **arr, int len);
+int mergesort_int(int *arr, int len);
 void print_int_arr(int a[], int n);
 
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv){
 
 	printf("\nAbout to mergesort:\n");
 
-	mergesort_int(p, 11);
+	mergesort_int(a, 11);
 	print_int_arr(a, 11);
 	
 	return 0;
@@ -43,7 +43,7 @@ int main(int argc, char **argv){
  *'arr' is a pointer to the integer array to sort.
  *'len' is the number of elements to sort, and must be >= 1.
  */
-int mergesort_int(int **arr, int len){
+int mergesort_int(int *arr, int len){
 	
 	int buffer[len];
 	int temp = 0;
@@ -63,11 +63,11 @@ int mergesort_int(int **arr, int len){
 	case 0:
 	case 1:	return 1;
 
-	case 2:	temp = (*arr)[0];
+	case 2:	temp = arr[0];
 		printf("case 2 %i\n\n",temp);
-		if( (*arr)[1] < temp){
-			(*arr)[0] = (*arr)[1];
-			(*arr)[1] = temp;
+		if( arr[1] < temp){
+			arr[0] = arr[1];
+			arr[1] = temp;
 		}
 		
 		return 1;
@@ -76,16 +76,16 @@ int mergesort_int(int **arr, int len){
 	//Recursive calls
 	temp = len/2;
 	mergesort_int(arr, temp);
-	mergesort_int(&((*arr)[temp]), len-temp);
+	mergesort_int(&(arr[temp]), len-temp);
 
 	//Merge
 	temp = 0;	//temp is the index of buffer
 	while(l < len/2 && r < len){
-		if((*arr)[l] <= (*arr)[r]){
-			buffer[temp] = (*arr)[l];
+		if(arr[l] <= arr[r]){
+			buffer[temp] = arr[l];
 			l++;
 		} else {
-			buffer[temp] = (*arr)[r];
+			buffer[temp] = arr[r];
 			r++;
 		}
 			
@@ -96,14 +96,14 @@ int mergesort_int(int **arr, int len){
 	if(r < len)
 		l = r;
 	while(temp < len){
-		buffer[temp] = (*arr)[l];
+		buffer[temp] = arr[l];
 		temp++;
 	}
 	
 	//Copy from buffer to *arr
 	temp = 0;
 	while(temp < len){
-		(*arr)[temp] = buffer[temp];
+		arr[temp] = buffer[temp];
 		temp++;
 	}
 	
