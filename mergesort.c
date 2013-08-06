@@ -9,7 +9,7 @@ An implementation of mergesort in C by Goobyalus
  *Header declarations
  */
 
-int mergesort_int(int **arr, int len);
+int mergesort_int(int *arr, int len);
 
 
 
